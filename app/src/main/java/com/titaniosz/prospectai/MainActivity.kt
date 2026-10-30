@@ -66,7 +66,7 @@ fun ProspectAIApp(activity: MainActivity) {
                                 searched = true
                                 val missing = found.count { !it.hasWebsite }
                                 status = if (found.isEmpty()) "Nenhum estabelecimento foi retornado. Tente novamente mais tarde."
-                                    else "Busca concluída: ${found.size} estabelecimentos; ${missing} sem site informado no OpenStreetMap."
+                                    else "Busca concluída: ${found.size} estabelecimentos; ${missing} possíveis oportunidades sinalizadas com ponto vermelho."
                             } catch (error: Exception) {
                                 status = error.message ?: "Não foi possível concluir a pesquisa. Verifique sua conexão."
                             } finally {
@@ -146,14 +146,14 @@ fun ProspectAIApp(activity: MainActivity) {
                     Text("PAINEL", color = Muted, fontSize = 11.sp, fontWeight = FontWeight.Bold)
                     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                         MetricCard(leads.size.toString(), "Encontradas", Modifier.weight(1f))
-                        MetricCard(leads.count { !it.hasWebsite }.toString(), "Sem site informado", Modifier.weight(1f))
+                        MetricCard(leads.count { !it.hasWebsite }.toString(), "Possíveis oportunidades", Modifier.weight(1f))
                     }
                 }
                 if (searched && leads.isEmpty()) item { Text("Nenhum resultado para exibir.", color = Muted) }
                 if (leads.isNotEmpty()) {
                     item {
                         Text("POSSÍVEIS OPORTUNIDADES", color = Muted, fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                        Text("A ausência de site no OpenStreetMap não confirma que a empresa não tenha site.", color = Muted, fontSize = 11.sp)
+                        Text("O ponto vermelho indica que não há endereço de site cadastrado no OpenStreetMap; confira antes do contato.", color = Muted, fontSize = 11.sp)
                     }
                     items(leads.filter { !it.hasWebsite }, key = { it.id }) { LeadCard(it) }
                     item { Text("OUTROS ESTABELECIMENTOS COM SITE INFORMADO", color = Muted, fontSize = 11.sp, fontWeight = FontWeight.Bold) }
