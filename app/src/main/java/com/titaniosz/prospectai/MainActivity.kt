@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -181,11 +182,19 @@ private fun LeadCard(lead: BusinessLead) {
             Spacer(Modifier.height(3.dp))
             Text(lead.category, color = Muted, fontSize = 11.sp)
             Spacer(Modifier.height(9.dp))
-            Text(
-                if (lead.hasWebsite) "Site informado: ${lead.website}" else "Site não informado no OpenStreetMap",
-                color = if (lead.hasWebsite) Accent else Color(0xFFFFC66D),
-                fontSize = 12.sp, fontWeight = FontWeight.SemiBold
-            )
+            if (lead.hasWebsite) {
+                Text("Site: ${lead.website}", color = Accent, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+            } else {
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(7.dp)) {
+                    Surface(
+                        modifier = Modifier.size(10.dp),
+                        shape = CircleShape,
+                        color = Color(0xFFFF4D5E),
+                        content = {}
+                    )
+                    Text("Possível oportunidade", color = Muted, fontSize = 11.sp)
+                }
+            }
             Text("Endereço: ${lead.address}", color = Muted, fontSize = 11.sp)
             Text("Telefone: ${lead.phone ?: "Não informado"}", color = Muted, fontSize = 11.sp)
             Text("Coordenadas: %.5f, %.5f".format(lead.latitude, lead.longitude), color = Muted, fontSize = 10.sp)
