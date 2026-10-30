@@ -9,10 +9,10 @@ Aplicativo Android para localizar estabelecimentos próximos e organizar possív
 - Pesquisa de estabelecimentos em raio de 30 km.
 - Consulta ao OpenStreetMap por meio da Overpass API.
 - Exibição de nome, categoria, telefone e endereço quando esses dados estiverem cadastrados.
-- Separação entre estabelecimentos com site informado e sem site informado nos dados do OpenStreetMap.
+- Separação entre estabelecimentos com endereço de site cadastrado e possíveis oportunidades sinalizadas por um ponto vermelho.
 
 ## Atenção sobre os resultados
-A ausência de um campo de site no OpenStreetMap **não prova** que a empresa não tenha um site. O aplicativo usa o rótulo “Site não informado no OpenStreetMap” e apresenta esses registros como possíveis oportunidades para conferência manual.
+O ponto vermelho indica que não há endereço de site cadastrado para aquele estabelecimento nos dados do OpenStreetMap. Isso **não prova** que a empresa não tenha um site; cada oportunidade deve ser conferida manualmente antes do contato.
 
 A cobertura depende dos dados mapeados pela comunidade. A Overpass API é um serviço público compartilhado, sujeito a limites, lentidão e indisponibilidade. Uma busca de 30 km pode levar algum tempo ou falhar temporariamente em regiões com muitos dados.
 
