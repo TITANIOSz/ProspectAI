@@ -31,8 +31,13 @@ object OverpassRepository {
                   nwr(around:$radiusMeters,$latitude,$longitude)["name"]["shop"];
                   nwr(around:$radiusMeters,$latitude,$longitude)["name"]["office"];
                   nwr(around:$radiusMeters,$latitude,$longitude)["name"]["craft"];
-                  nwr(around:$radiusMeters,$latitude,$longitude)["name"]["amenity"~"restaurant|cafe|fast_food|bar|pub|bank|clinic|pharmacy|dentist|doctors|veterinary|fuel|car_repair|beauty|hairdresser|marketplace"];
+                  nwr(around:$radiusMeters,$latitude,$longitude)["name"]["amenity"];
                   nwr(around:$radiusMeters,$latitude,$longitude)["name"]["healthcare"];
+                  nwr(around:$radiusMeters,$latitude,$longitude)["name"]["tourism"];
+                  nwr(around:$radiusMeters,$latitude,$longitude)["name"]["leisure"];
+                  nwr(around:$radiusMeters,$latitude,$longitude)["name"]["industrial"];
+                  nwr(around:$radiusMeters,$latitude,$longitude)["name"]["landuse"="industrial"];
+                  nwr(around:$radiusMeters,$latitude,$longitude)["name"]["man_made"="works"];
                 );
                 out center tags;
             """.trimIndent()
@@ -86,6 +91,11 @@ object OverpassRepository {
                         tags.has("office") -> "Escritório: " + tags.optString("office")
                         tags.has("craft") -> "Serviço: " + tags.optString("craft")
                         tags.has("healthcare") -> "Saúde: " + tags.optString("healthcare")
+                        tags.has("tourism") -> "Turismo: " + tags.optString("tourism")
+                        tags.has("leisure") -> "Lazer: " + tags.optString("leisure")
+                        tags.has("industrial") -> "Indústria: " + tags.optString("industrial")
+                        tags.optString("landuse") == "industrial" -> "Área industrial"
+                        tags.optString("man_made") == "works" -> "Unidade industrial"
                         else -> "Estabelecimento: " + tags.optString("amenity", "outro")
                     }
 
