@@ -65,7 +65,7 @@ fun ProspectAIApp(activity: MainActivity) {
                                 searched = true
                                 val missing = found.count { !it.hasWebsite }
                                 status = if (found.isEmpty()) "Nenhum estabelecimento foi retornado. Tente novamente mais tarde."
-                                    else "Busca concluída: \${found.size} estabelecimentos; \${missing} sem site informado no OpenStreetMap."
+                                    else "Busca concluída: ${found.size} estabelecimentos; ${missing} sem site informado no OpenStreetMap."
                             } catch (error: Exception) {
                                 status = error.message ?: "Não foi possível concluir a pesquisa. Verifique sua conexão."
                             } finally {
@@ -104,7 +104,7 @@ fun ProspectAIApp(activity: MainActivity) {
                     Column(Modifier.padding(top = 30.dp)) {
                         Text("ProspectAI", color = Accent, fontSize = 14.sp, fontWeight = FontWeight.Bold)
                         Spacer(Modifier.height(7.dp))
-                        Text("Encontre oportunidades\\nperto de você.", fontSize = 28.sp, lineHeight = 34.sp, fontWeight = FontWeight.Bold)
+                        Text("Encontre oportunidades\nperto de você.", fontSize = 28.sp, lineHeight = 34.sp, fontWeight = FontWeight.Bold)
                         Spacer(Modifier.height(7.dp))
                         Text("Empresas que podem precisar de presença digital.", color = Muted, fontSize = 13.sp)
                     }
@@ -182,12 +182,12 @@ private fun LeadCard(lead: BusinessLead) {
             Text(lead.category, color = Muted, fontSize = 11.sp)
             Spacer(Modifier.height(9.dp))
             Text(
-                if (lead.hasWebsite) "Site informado: \${lead.website}" else "Site não informado no OpenStreetMap",
+                if (lead.hasWebsite) "Site informado: ${lead.website}" else "Site não informado no OpenStreetMap",
                 color = if (lead.hasWebsite) Accent else Color(0xFFFFC66D),
                 fontSize = 12.sp, fontWeight = FontWeight.SemiBold
             )
-            Text("Endereço: \${lead.address}", color = Muted, fontSize = 11.sp)
-            Text("Telefone: \${lead.phone ?: "Não informado"}", color = Muted, fontSize = 11.sp)
+            Text("Endereço: ${lead.address}", color = Muted, fontSize = 11.sp)
+            Text("Telefone: ${lead.phone ?: "Não informado"}", color = Muted, fontSize = 11.sp)
             Text("Coordenadas: %.5f, %.5f".format(lead.latitude, lead.longitude), color = Muted, fontSize = 10.sp)
         }
     }
