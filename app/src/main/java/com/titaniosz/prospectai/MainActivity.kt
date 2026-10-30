@@ -17,6 +17,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import coil.compose.AsyncImage
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -58,7 +60,7 @@ fun ProspectAIApp(activity: MainActivity) {
                         loading = false
                         status = "Não foi possível obter a localização. Ative a localização do aparelho e tente novamente."
                     } else {
-                        status = "Pesquisando estabelecimentos em até 30 km..."
+                        status = "Buscando até 300 estabelecimentos em 30 km..."
                         activity.lifecycleScope.launch {
                             try {
                                 val found = OverpassRepository.findBusinesses(location.latitude, location.longitude)
@@ -164,7 +166,7 @@ fun ProspectAIApp(activity: MainActivity) {
                         Column(Modifier.padding(16.dp)) {
                             Text("Fonte de dados", fontWeight = FontWeight.Bold)
                             Spacer(Modifier.height(5.dp))
-                            Text("Dados do OpenStreetMap via Overpass API. A cobertura varia conforme a região e os dados cadastrados pela comunidade. © OpenStreetMap contributors.", color = Muted, fontSize = 11.sp, lineHeight = 17.sp)
+                            Text("Dados do OpenStreetMap via servidores Overpass. Fotos aparecem quando o local possui imagem cadastrada. A cobertura varia conforme os dados da comunidade. © OpenStreetMap contributors.", color = Muted, fontSize = 11.sp, lineHeight = 17.sp)
                         }
                     }
                     Spacer(Modifier.height(20.dp))
@@ -178,6 +180,10 @@ fun ProspectAIApp(activity: MainActivity) {
 private fun LeadCard(lead: BusinessLead) {
     Card(colors = CardDefaults.cardColors(containerColor = Panel), shape = RoundedCornerShape(16.dp)) {
         Column(Modifier.fillMaxWidth().padding(15.dp)) {
+            if (lead.imageUrl != null) {
+                AsyncImage(model = lead.imageUrl, contentDescription = "Imagem do estabelecimento", modifier = Modifier.fillMaxWidth().height(150.dp), contentScale = ContentScale.Crop)
+                Spacer(Modifier.height(10.dp))
+            }
             Text(lead.name, fontWeight = FontWeight.Bold, fontSize = 15.sp)
             Spacer(Modifier.height(3.dp))
             Text(lead.category, color = Muted, fontSize = 11.sp)
