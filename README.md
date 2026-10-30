@@ -6,7 +6,7 @@ Aplicativo Android para localizar estabelecimentos próximos e organizar possív
 - Android nativo com Kotlin e Jetpack Compose.
 - Interface escura.
 - Solicitação de localização durante o uso do aplicativo.
-- Pesquisa de estabelecimentos em raio de 30 km.
+- Pesquisa de estabelecimentos em raio de 30 km, incluindo comércio, escritórios, serviços, saúde, turismo, lazer e atividades industriais.
 - Consulta ao OpenStreetMap por meio da Overpass API.
 - Exibição de nome, categoria, telefone e endereço quando esses dados estiverem cadastrados.
 - Separação entre estabelecimentos com endereço de site cadastrado e possíveis oportunidades sinalizadas por um ponto vermelho.
