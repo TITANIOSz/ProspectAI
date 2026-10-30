@@ -1,16 +1,26 @@
 # ProspectAI
 
-Aplicativo Android para identificar empresas próximas e organizar oportunidades comerciais de presença digital.
+Aplicativo Android para localizar estabelecimentos próximos e organizar possíveis oportunidades comerciais de presença digital.
 
-## Primeira versão
+## Funcionalidades implementadas
 - Android nativo com Kotlin e Jetpack Compose.
 - Interface escura.
-- Raio padrão de pesquisa: 30 km.
-- Categorias: empresas de diferentes segmentos.
-- Preparado para integrar uma fonte de dados de estabelecimentos e verificar presença de site.
+- Solicitação de localização durante o uso do aplicativo.
+- Pesquisa de estabelecimentos em raio de 30 km.
+- Consulta ao OpenStreetMap por meio da Overpass API.
+- Exibição de nome, categoria, telefone e endereço quando esses dados estiverem cadastrados.
+- Separação entre estabelecimentos com site informado e sem site informado nos dados do OpenStreetMap.
 
-## Privacidade e funcionamento
-A busca real depende de uma fonte de dados geográficos e de uma estratégia de verificação de sites. A localização será solicitada ao usuário em tempo de execução; não é coletada em segundo plano nesta versão inicial.
+## Atenção sobre os resultados
+A ausência de um campo de site no OpenStreetMap **não prova** que a empresa não tenha um site. O aplicativo usa o rótulo “Site não informado no OpenStreetMap” e apresenta esses registros como possíveis oportunidades para conferência manual.
+
+A cobertura depende dos dados mapeados pela comunidade. A Overpass API é um serviço público compartilhado, sujeito a limites, lentidão e indisponibilidade. Uma busca de 30 km pode levar algum tempo ou falhar temporariamente em regiões com muitos dados.
+
+## Fonte e atribuição
+Os dados geográficos vêm do OpenStreetMap. © OpenStreetMap contributors. Consulte https://www.openstreetmap.org/copyright.
+
+## Privacidade
+A localização é solicitada quando o usuário inicia uma pesquisa. Esta versão não implementa rastreamento em segundo plano nem envia a localização para um servidor próprio; as coordenadas são usadas para consultar a Overpass API.
 
 ## Executar
-Abra a pasta raiz no Android Studio, sincronize o Gradle e execute o módulo `app` em um dispositivo ou emulador Android.
+Abra a pasta raiz no Android Studio, sincronize o Gradle e execute o módulo `app` em um dispositivo ou emulador Android. É necessário acesso à internet e serviços de localização do Google Play no dispositivo.
